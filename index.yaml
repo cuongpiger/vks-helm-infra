@@ -3,6 +3,16 @@ entries:
   datastore:
   - apiVersion: v2
     appVersion: 3.5.12
+    created: "2024-03-14T06:02:22.043148747Z"
+    description: A Helm chart for Kubernetes
+    digest: 6a6158562b56ba32df185aa1d83c4c401f71530d38dba69d1aa884fa9d3dd4c3
+    name: datastore
+    type: application
+    urls:
+    - https://github.com/cuongpiger/vks-helm-infra/releases/download/datastore-0.1.1/datastore-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 3.5.12
     created: "2024-03-14T05:34:13.456746506Z"
     description: A Helm chart for Kubernetes
     digest: de4d9c01e0e6a9e0589c39749fbeafab1eb6967b3de855d62059cfad6a4308e0
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/cuongpiger/vks-helm-infra/releases/download/datastore-0.1.0/datastore-0.1.0.tgz
     version: 0.1.0
-generated: "2024-03-14T05:34:13.456755794Z"
+generated: "2024-03-14T06:02:22.043162102Z"
