@@ -23,6 +23,19 @@ entries:
     version: 0.1.0
   vcontainer-storage-interface:
   - apiVersion: v2
+    appVersion: v1.0.1
+    created: "2024-03-23T06:22:47.256210777Z"
+    description: vContainer CSI plugin for Kubernetes
+    digest: 8bfc427c210128fb8d1dd3aa1fc1de5eb351a169a6545041f34be0f2b66c441a
+    maintainers:
+    - email: cuongdm3@vng.com.vn
+      name: Cuong. Duong Manh
+    name: vcontainer-storage-interface
+    type: application
+    urls:
+    - https://github.com/cuongpiger/vks-helm-infra/releases/download/vcontainer-storage-interface-1.0.1/vcontainer-storage-interface-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
     appVersion: v1.0.0
     created: "2024-03-23T04:58:54.965627612Z"
     description: vContainer CSI plugin for Kubernetes
@@ -35,4 +48,4 @@ entries:
     urls:
     - https://github.com/cuongpiger/vks-helm-infra/releases/download/vcontainer-storage-interface-1.0.0/vcontainer-storage-interface-1.0.0.tgz
     version: 1.0.0
-generated: "2024-03-23T04:58:54.965653281Z"
+generated: "2024-03-23T06:22:47.256274175Z"
