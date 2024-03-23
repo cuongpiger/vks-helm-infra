@@ -24,3 +24,10 @@
       --set vcontainerConfig.clientSecret=<PUT_YOUR_CLIENT_SECRET>
     ```
 
+
+
+## 1.3. Upgrade
+- Upgrade `vcontainer-storage-interface` to `latest` version.
+  ```bash
+  helm upgrade vcontainer-storage-interface vks-helm-infra/vcontainer-storage-interface -n kube-system
+  ```
