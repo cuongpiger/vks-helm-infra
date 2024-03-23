@@ -12,13 +12,13 @@
 - Following the below steps to install `vcontainer-storage-interface` on your Kubernetes cluster:
   - **Step 1**: Add the `vcontainer-helm-infra` Helm repository:
     ```
-    helm repo add vcontainer-helm-infra https://vngcloud.github.io/vcontainer-helm-infra
+    helm repo add vks-helm-infra https://cuongpiger.github.io/vks-helm-infra
     helm repo update
     ```
 
   - **Step 2**: Install `vcontainer-storage-interface`:
     ```
-    helm install vcontainer-storage-interface vcontainer-helm-infra/vcontainer-storage-interface --replace \
+    helm install vcontainer-storage-interface vks-helm-infra/vcontainer-storage-interface --replace \
       --namespace kube-system \
       --set vcontainerConfig.clientID=<PUT_YOUR_CLIENT_ID> \
       --set vcontainerConfig.clientSecret=<PUT_YOUR_CLIENT_SECRET>

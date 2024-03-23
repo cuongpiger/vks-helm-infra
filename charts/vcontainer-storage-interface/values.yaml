@@ -64,15 +64,8 @@ csi:
       repository: docker.io/manhcuong8499/vcontainer-storage-interface
       pullPolicy: IfNotPresent
       tag: # defaults to .Chart.AppVersion
-    volumes:
-      - name: cacert
-        hostPath:
-          path: /etc/kubernetes/ca-bundle.crt
-          type: File
+    volumes: {}
     volumeMounts:
-      - name: cacert
-        mountPath: /etc/kubernetes/ca-bundle.crt
-        readOnly: true
       - name: vcontainer-config
         mountPath: /etc/config
         readOnly: true
