@@ -31,3 +31,9 @@
   ```bash
   helm upgrade vcontainer-storage-interface vks-helm-infra/vcontainer-storage-interface -n kube-system
   ```
+
+## 1.4. Uninstall
+- Uninstall `vcontainer-storage-interface` from your Kubernetes cluster.
+  ```bash
+  helm uninstall vcontainer-storage-interface -n kube-system
+  ```
