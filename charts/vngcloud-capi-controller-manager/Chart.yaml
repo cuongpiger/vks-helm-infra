@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: v0.0.0
-version: 0.0.7
+appVersion: v1.0.0
+version: 1.0.0
 name: vngcloud-capi-controller-manager
 description: VngCloud Controller Manager plugin for Kubernetes
 type: application
