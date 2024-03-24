@@ -168,7 +168,6 @@ affinity:
 cluster:
   clusterID: "<PUT_YOUR_CLUSTER_ID>"
 
-clusterRoleName: system:vngcloud-controller-manager
+clusterRoleName: system:cloud-controller-manager
 
-serviceAccountName: vngcloud-controller-manager
-automountServiceAccountToken: true
+serviceAccountName: cloud-controller-manager
