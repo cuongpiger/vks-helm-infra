@@ -50,7 +50,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
-            - /bin/vngcloud-api-controller-manager
+            - /bin/vngcloud-capi-controller-manager
             - --v={{ .Values.logVerbosityLevel }}
             - --cloud-config=$(CLOUD_CONFIG)
             - --cluster-name=$(CLUSTER_NAME)
