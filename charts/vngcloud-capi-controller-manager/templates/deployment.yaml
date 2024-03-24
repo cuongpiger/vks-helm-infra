@@ -46,11 +46,11 @@ spec:
       {{- end }}
       serviceAccountName: {{ .Values.serviceAccountName }}
       containers:
-        - name: vngcloud-controller-manager
+        - name: vngcloud-api-controller-manager
           image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
-            - /bin/vngcloud-controller-manager
+            - /bin/vngcloud-api-controller-manager
             - --v={{ .Values.logVerbosityLevel }}
             - --cloud-config=$(CLOUD_CONFIG)
             - --cluster-name=$(CLUSTER_NAME)
