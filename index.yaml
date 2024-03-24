@@ -24,6 +24,19 @@ entries:
   vcontainer-storage-interface:
   - apiVersion: v2
     appVersion: v1.0.1
+    created: "2024-03-24T04:44:34.176288552Z"
+    description: vContainer CSI plugin for Kubernetes
+    digest: f192f94cdbe4c37434d8a674a373731b0997afcf3a367074cd9fc905cb47d118
+    maintainers:
+    - email: cuongdm3@vng.com.vn
+      name: Cuong. Duong Manh
+    name: vcontainer-storage-interface
+    type: application
+    urls:
+    - https://github.com/cuongpiger/vks-helm-infra/releases/download/vcontainer-storage-interface-1.0.2/vcontainer-storage-interface-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: v1.0.1
     created: "2024-03-23T06:22:47.256210777Z"
     description: vContainer CSI plugin for Kubernetes
     digest: 8bfc427c210128fb8d1dd3aa1fc1de5eb351a169a6545041f34be0f2b66c441a
@@ -48,4 +61,18 @@ entries:
     urls:
     - https://github.com/cuongpiger/vks-helm-infra/releases/download/vcontainer-storage-interface-1.0.0/vcontainer-storage-interface-1.0.0.tgz
     version: 1.0.0
-generated: "2024-03-23T06:22:47.256274175Z"
+  vngcloud-capi-controller-manager:
+  - apiVersion: v2
+    appVersion: v0.0.0
+    created: "2024-03-24T04:44:34.314145069Z"
+    description: VngCloud Controller Manager plugin for Kubernetes
+    digest: 25d691856c1a2b6bd5129904a3fd00d8c850f23ea9a55310e661e98928794cb0
+    maintainers:
+    - email: cuongdm3@vng.com.vn
+      name: Cuong. Duong Manh
+    name: vngcloud-capi-controller-manager
+    type: application
+    urls:
+    - https://github.com/cuongpiger/vks-helm-infra/releases/download/vngcloud-capi-controller-manager-0.0.2/vngcloud-capi-controller-manager-0.0.2.tgz
+    version: 0.0.2
+generated: "2024-03-24T04:44:34.314189272Z"
