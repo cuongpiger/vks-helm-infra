@@ -57,6 +57,7 @@ spec:
             - --cloud-provider=vngcloud
             - --use-service-account-credentials=true
             - --allow-untagged-cloud=true
+            - --concurrent-service-syncs=10
             # - --controllers={{- trimAll "," (include "vconCcm.enabledControllers" . ) -}}
             {{- if .Values.serviceMonitor.enabled }}
             - --bind-address=0.0.0.0
