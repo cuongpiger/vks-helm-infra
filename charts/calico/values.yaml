@@ -1,5 +1,5 @@
 calicoKubeControllers:
-  maxUnavailable: 1
+  minAvailable: 1
   image:
     controllers:
       repository: "vcr.vngcloud.vn/81-vks-public/calico-kube-controllers"
@@ -7,7 +7,7 @@ calicoKubeControllers:
       pullPolicy: "IfNotPresent"
 
 calicoTypha:
-  maxUnavailable: 1
+  minAvailable: 1
   image:
     controllers:
       repository: "vcr.vngcloud.vn/81-vks-public/calico-typha"

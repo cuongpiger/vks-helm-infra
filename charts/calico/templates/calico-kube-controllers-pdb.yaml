@@ -9,7 +9,7 @@ metadata:
   labels:
     {{- include "calicoCni.calicoKubeControllers.labels" . | nindent 4 }}
 spec:
-  maxUnavailable: {{ .Values.calicoKubeControllers.maxUnavailable }}
+  minAvailable: {{ .Values.calicoKubeControllers.minAvailable }}
   selector:
     matchLabels:
       {{- include "calicoCni.calicoKubeControllers.matchLabels" . | nindent 6 }}
