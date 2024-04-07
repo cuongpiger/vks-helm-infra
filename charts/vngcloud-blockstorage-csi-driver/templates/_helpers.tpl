@@ -1,3 +1,12 @@
+{{/* vim: set filetype=mustache: */}}
+{{/*
+Expand the name of the chart.
+*/}}
+{{- define "vngcloud-blockstorage-csi-driver.name" -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+
 {{/*
 Create chart name and version as used by the chart label.
 */}}
@@ -22,4 +31,29 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- if .Values.customLabels }}
 {{ toYaml .Values.customLabels }}
 {{- end }}
+{{- end -}}
+
+
+{{/*
+Common selector labels
+*/}}
+{{- define "vngcloud-blockstorage-csi-driver.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "vngcloud-blockstorage-csi-driver.name" . }}
+{{- if ne .Release.Name "kustomize" }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+{{- end -}}
+
+
+{{/*
+Convert the `--extra-tags` command line arg from a map.
+*/}}
+{{- define "vngcloud-blockstorage-csi-driver.extra-volume-tags" -}}
+{{- $result := dict "pairs" (list) -}}
+{{- range $key, $value := .Values.controller.extraVolumeTags -}}
+{{- $noop := printf "%s=%v" $key $value | append $result.pairs | set $result "pairs" -}}
+{{- end -}}
+{{- if gt (len $result.pairs) 0 -}}
+{{- printf "- \"--extra-tags=%s\"" (join "," $result.pairs) -}}
+{{- end -}}
 {{- end -}}

@@ -183,26 +183,6 @@ controller:
   sdkDebugLog: false
   loggingFormat: text
   affinity:
-    nodeAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 1
-        preference:
-          matchExpressions:
-          - key: eks.amazonaws.com/compute-type
-            operator: NotIn
-            values:
-            - fargate
-    podAntiAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - podAffinityTerm:
-          labelSelector:
-            matchExpressions:
-            - key: app
-              operator: In
-              values:
-              - ebs-csi-controller
-          topologyKey: kubernetes.io/hostname
-        weight: 100
   # The default filesystem type of the volume to provision when fstype is unspecified in the StorageClass.
   # If the default is not set and fstype is unset in the StorageClass, then no fstype will be set
   defaultFsType: ext4
@@ -267,7 +247,7 @@ controller:
   serviceAccount:
   # A service account will be created for you if set to true. Set to false if you want to use your own.
     create: true
-    name: vks-csi-controller-sa
+    name: vngcloud-csi-controller-sa
     annotations: {}
     ## Enable if EKS IAM for SA is used
     # eks.amazonaws.com/role-arn: arn:<partition>:iam::<account>:role/ebs-csi-role
@@ -370,7 +350,7 @@ node:
     emptyDir: {}
   serviceAccount:
     create: true
-    name: vks-csi-node-sa
+    name: vngcloud-csi-node-sa
     annotations: {}
     ## Enable if EKS IAM for SA is used
     # eks.amazonaws.com/role-arn: arn:<partition>:iam::<account>:role/ebs-csi-role
