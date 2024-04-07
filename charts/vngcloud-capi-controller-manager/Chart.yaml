@@ -1,0 +1,9 @@
+apiVersion: v2
+appVersion: v1.0.1
+version: 1.0.2
+name: vngcloud-capi-controller-manager
+description: VngCloud Controller Manager plugin for Kubernetes
+type: application
+maintainers:
+  - name: Cuong. Duong Manh
+    email: cuongdm3@vng.com.vn
