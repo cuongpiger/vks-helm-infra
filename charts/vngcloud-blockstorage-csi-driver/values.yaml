@@ -3,10 +3,10 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: docker.io/cuongdm8499/vngcloud-blockstorage-csi-driver
+  repository: vcr.vngcloud.vn/60108-cuongdm3/vngcloud-blockstorage-csi-driver
   # Overrides the image tag whose default is v{{ .Chart.AppVersion }}
-  tag: ""
-  pullPolicy: IfNotPresent
+  tag: "v0.0.0"
+  pullPolicy: Always
 
 # -- Custom labels to add into metadata
 customLabels:
@@ -18,9 +18,9 @@ sidecars:
     env: []
     image:
       pullPolicy: IfNotPresent
-      repository: public.ecr.aws/eks-distro/kubernetes-csi/external-provisioner
-      tag: "v4.0.0-eks-1-29-7"
-    logLevel: 2
+      repository: vcr.vngcloud.vn/60108-cuongdm3/csi-provisioner
+      tag: "v4.0.1"
+    logLevel: 5
     # Additional parameters provided by external-provisioner.
     additionalArgs: []
     # Grant additional permissions to external-provisioner
@@ -43,8 +43,8 @@ sidecars:
     env: []
     image:
       pullPolicy: IfNotPresent
-      repository: public.ecr.aws/eks-distro/kubernetes-csi/external-attacher
-      tag: "v4.5.0-eks-1-29-7"
+      repository: vcr.vngcloud.vn/60108-cuongdm3/csi-attacher
+      tag: "v4.5.1"
     # Tune leader lease election for csi-attacher.
     # Leader election is on by default.
     leaderElection:
@@ -55,7 +55,7 @@ sidecars:
       # leaseDuration: "15s"
       # renewDeadline: "10s"
       # retryPeriod: "5s"
-    logLevel: 2
+    logLevel: 5
     # Additional parameters provided by external-attacher.
     additionalArgs: []
     # Grant additional permissions to external-attacher
@@ -70,9 +70,9 @@ sidecars:
     env: []
     image:
       pullPolicy: IfNotPresent
-      repository: public.ecr.aws/eks-distro/kubernetes-csi/external-snapshotter/csi-snapshotter
-      tag: "v7.0.1-eks-1-29-7"
-    logLevel: 2
+      repository: vcr.vngcloud.vn/60108-cuongdm3/csi-snapshotter
+      tag: "v7.0.2"
+    logLevel: 5
     # Additional parameters provided by csi-snapshotter.
     additionalArgs: []
     # Grant additional permissions to csi-snapshotter
@@ -84,8 +84,8 @@ sidecars:
   livenessProbe:
     image:
       pullPolicy: IfNotPresent
-      repository: public.ecr.aws/eks-distro/kubernetes-csi/livenessprobe
-      tag: "v2.12.0-eks-1-29-7"
+      repository: vcr.vngcloud.vn/60108-cuongdm3/csi-livenessprobe
+      tag: "v2.9.0"
     # Additional parameters provided by livenessprobe.
     additionalArgs: []
     resources: {}
@@ -96,8 +96,8 @@ sidecars:
     env: []
     image:
       pullPolicy: IfNotPresent
-      repository: public.ecr.aws/eks-distro/kubernetes-csi/external-resizer
-      tag: "v1.10.0-eks-1-29-7"
+      repository: vcr.vngcloud.vn/60108-cuongdm3/csi-resizer
+      tag: "v1.9.4"
     # Tune leader lease election for csi-resizer.
     # Leader election is on by default.
     leaderElection:
@@ -108,7 +108,7 @@ sidecars:
       # leaseDuration: "15s"
       # renewDeadline: "10s"
       # retryPeriod: "5s"
-    logLevel: 2
+    logLevel: 5
     # Additional parameters provided by external-resizer.
     additionalArgs: []
     # Grant additional permissions to external-resizer
@@ -121,9 +121,9 @@ sidecars:
     env: []
     image:
       pullPolicy: IfNotPresent
-      repository: public.ecr.aws/eks-distro/kubernetes-csi/node-driver-registrar
-      tag: "v2.10.0-eks-1-29-7"
-    logLevel: 2
+      repository: vcr.vngcloud.vn/60108-cuongdm3/csi-node-driver-registrar
+      tag: "v2.9.4"
+    logLevel: 5
     # Additional parameters provided by node-driver-registrar.
     additionalArgs: []
     resources: {}
@@ -143,7 +143,7 @@ sidecars:
     env: []
     image:
       pullPolicy: Always
-      repository: docker pull vcr.vngcloud.vn/60108-cuongdm3/vngcloud-csi-volume-modifier
+      repository: vcr.vngcloud.vn/60108-cuongdm3/vngcloud-csi-volume-modifier
       tag: "v0.0.0"
     leaderElection:
       enabled: true
@@ -153,7 +153,7 @@ sidecars:
       # leaseDuration: "15s"
       # renewDeadline: "10s"
       # retryPeriod: "5s"
-    logLevel: 2
+    logLevel: 5
     # Additional parameters provided by volume-modifier-for-k8s.
     additionalArgs: []
     resources: {}
