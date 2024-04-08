@@ -142,9 +142,9 @@ sidecars:
   volumemodifier:
     env: []
     image:
-      pullPolicy: IfNotPresent
-      repository: public.ecr.aws/ebs-csi-driver/volume-modifier-for-k8s
-      tag: "v0.2.1"
+      pullPolicy: Always
+      repository: docker pull vcr.vngcloud.vn/60108-cuongdm3/vngcloud-csi-volume-modifier
+      tag: "v0.0.0"
     leaderElection:
       enabled: true
       # Optional values to tune lease behavior.
@@ -169,10 +169,12 @@ imagePullSecrets: []
 nameOverride:
 fullnameOverride:
 
-awsAccessSecret:
-  name: aws-secret
-  keyId: key_id
-  accessKey: access_key
+vngcloudAccessSecret:
+  name: vngcloud-secret
+  keyId: key_id                                        # PUT YOUR ClientID here
+  accessKey: access_key                                # PUT YOUR ClientSecret here
+  identityEndpoint: "https://iamapis.vngcloud.vn/accounts-api"
+  vserverEndpoint: "https://hcm-3.api.vngcloud.vn/vserver/vserver-gateway"
 
 controller:
   batching: true
@@ -302,7 +304,7 @@ controller:
   #   command: [ 'sh', '-c', "sleep 20" ]
   # Enable opentelemetry tracing for the plugin running on the daemonset
   otelTracing: {}
-  #  otelServiceName: ebs-csi-controller
+  #  otelServiceName: vngcloud-csi-controller
   #  otelExporterEndpoint: "http://localhost:4317"
 
 node:

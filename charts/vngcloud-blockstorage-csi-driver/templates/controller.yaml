@@ -117,32 +117,34 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-            {{- with .Values.awsAccessSecret }}
-            - name: AWS_ACCESS_KEY_ID
+            {{- with .Values.vngcloudAccessSecret }}
+            - name: VNGCLOUD_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
                   name: {{ .name }}
                   key: {{ .keyId }}
                   optional: true
-            - name: AWS_SECRET_ACCESS_KEY
+            - name: VNGCLOUD_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
                   name: {{ .name }}
                   key: {{ .accessKey }}
                   optional: true
-            {{- end }}
-            - name: AWS_EC2_ENDPOINT
+            - name: VNGCLOUD_IDENTITY_ENDPOINT
               valueFrom:
-                configMapKeyRef:
-                  name: aws-meta
-                  key: endpoint
+                secretKeyRef:
+                  name: {{ .name }}
+                  key: {{ .identityEndpoint }}
                   optional: true
-            {{- with .Values.controller.region }}
-            - name: AWS_REGION
-              value: {{ . }}
+            - name: VNGCLOUD_VSERVER_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .name }}
+                  key: {{ .vserverEndpoint }}
+                  optional: true
             {{- end }}
             {{- if .Values.proxy.http_proxy }}
-            {{- include "aws-ebs-csi-driver.http-proxy" . | nindent 12 }}
+            {{- include "vngcloud-blockstorage-csi-driver.http-proxy" . | nindent 12 }}
             {{- end }}
             {{- with .Values.controller.env }}
             {{- . | toYaml | nindent 12 }}
@@ -234,7 +236,7 @@ spec:
             - name: ADDRESS
               value: /var/lib/csi/sockets/pluginproxy/csi.sock
             {{- if .Values.proxy.http_proxy }}
-            {{- include "aws-ebs-csi-driver.http-proxy" . | nindent 12 }}
+            {{- include "vngcloud-blockstorage-csi-driver.http-proxy" . | nindent 12 }}
             {{- end }}
             {{- with .Values.sidecars.provisioner.env }}
             {{- . | toYaml | nindent 12 }}
@@ -287,7 +289,7 @@ spec:
             - name: ADDRESS
               value: /var/lib/csi/sockets/pluginproxy/csi.sock
             {{- if .Values.proxy.http_proxy }}
-            {{- include "aws-ebs-csi-driver.http-proxy" . | nindent 12 }}
+            {{- include "vngcloud-blockstorage-csi-driver.http-proxy" . | nindent 12 }}
             {{- end }}
             {{- with .Values.sidecars.attacher.env }}
             {{- . | toYaml | nindent 12 }}
@@ -329,7 +331,7 @@ spec:
             - name: ADDRESS
               value: /var/lib/csi/sockets/pluginproxy/csi.sock
             {{- if .Values.proxy.http_proxy }}
-            {{- include "aws-ebs-csi-driver.http-proxy" . | nindent 12 }}
+            {{- include "vngcloud-blockstorage-csi-driver.http-proxy" . | nindent 12 }}
             {{- end }}
             {{- with .Values.sidecars.snapshotter.env }}
             {{- . | toYaml | nindent 12 }}
@@ -387,7 +389,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             {{- if .Values.proxy.http_proxy }}
-            {{- include "aws-ebs-csi-driver.http-proxy" . | nindent 12 }}
+            {{- include "vngcloud-blockstorage-csi-driver.http-proxy" . | nindent 12 }}
             {{- end }}
             {{- with .Values.sidecars.volumemodifier.env }}
             {{- . | toYaml | nindent 12 }}
@@ -442,7 +444,7 @@ spec:
             - name: ADDRESS
               value: /var/lib/csi/sockets/pluginproxy/csi.sock
             {{- if .Values.proxy.http_proxy }}
-            {{- include "aws-ebs-csi-driver.http-proxy" . | nindent 12 }}
+            {{- include "vngcloud-blockstorage-csi-driver.http-proxy" . | nindent 12 }}
             {{- end }}
             {{- with .Values.sidecars.resizer.env }}
             {{- . | toYaml | nindent 12 }}

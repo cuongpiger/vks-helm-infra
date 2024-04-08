@@ -57,3 +57,16 @@ Convert the `--extra-tags` command line arg from a map.
 {{- printf "- \"--extra-tags=%s\"" (join "," $result.pairs) -}}
 {{- end -}}
 {{- end -}}
+
+
+{{/*
+Handle http proxy env vars
+*/}}
+{{- define "vngcloud-blockstorage-csi-driver.http-proxy" -}}
+- name: HTTP_PROXY
+  value: {{ .Values.proxy.http_proxy | quote }}
+- name: HTTPS_PROXY
+  value: {{ .Values.proxy.http_proxy | quote }}
+- name: NO_PROXY
+  value: {{ .Values.proxy.no_proxy | quote }}
+{{- end -}}
