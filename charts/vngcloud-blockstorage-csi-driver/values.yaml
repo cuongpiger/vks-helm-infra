@@ -315,23 +315,7 @@ node:
   logLevel: 2
   priorityClassName:
   additionalArgs: []
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: eks.amazonaws.com/compute-type
-            operator: NotIn
-            values:
-            - fargate
-          - key: node.kubernetes.io/instance-type
-            operator: NotIn
-            values:
-            - a1.medium
-            - a1.large
-            - a1.xlarge
-            - a1.2xlarge
-            - a1.4xlarge
+  affinity: {}
   nodeSelector: {}
   daemonSetAnnotations: {}
   podAnnotations: {}
@@ -359,7 +343,6 @@ node:
     automountServiceAccountToken: true
   # Enable the linux daemonset creation
   enableLinux: true
-  enableWindows: false
   # The number of attachment slots to reserve for system use (and not to be used for CSI volumes)
   # When this parameter is not specified (or set to -1), the EBS CSI Driver will attempt to determine the number of reserved slots via heuristic
   # Cannot be specified at the same time as `node.volumeAttachLimit`
@@ -440,11 +423,6 @@ volumeSnapshotClasses: []
 #   # deletionPolicy must be specified
 #   deletionPolicy: Delete
 #   parameters:
-
-# Use old CSIDriver without an fsGroupPolicy set
-# Intended for use with older clusters that cannot easily replace the CSIDriver object
-# This parameter should always be false for new installations
-useOldCSIDriver: false
 
 helmTester:
   enabled: true
