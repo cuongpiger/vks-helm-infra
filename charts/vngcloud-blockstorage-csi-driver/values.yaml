@@ -170,7 +170,7 @@ nameOverride:
 fullnameOverride:
 
 vngcloudAccessSecret:
-  name: vngcloud-secret
+  name: vngcloud-csi-secret
   keyId: key_id                                        # PUT YOUR ClientID here
   accessKey: access_key                                # PUT YOUR ClientSecret here
   identityEndpoint: "https://iamapis.vngcloud.vn/accounts-api"

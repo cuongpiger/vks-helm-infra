@@ -117,32 +117,26 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-            {{- with .Values.vngcloudAccessSecret }}
             - name: VNGCLOUD_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: {{ .name }}
-                  key: {{ .keyId }}
-                  optional: true
+                  name: {{ .Values.vngcloudAccessSecret.name }}
+                  key: keyId
             - name: VNGCLOUD_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ .name }}
-                  key: {{ .accessKey }}
-                  optional: true
+                  name: {{ .Values.vngcloudAccessSecret.name }}
+                  key: accessKey
             - name: VNGCLOUD_IDENTITY_ENDPOINT
               valueFrom:
                 secretKeyRef:
-                  name: {{ .name }}
-                  key: {{ .identityEndpoint }}
-                  optional: true
+                  name: {{ .Values.vngcloudAccessSecret.name }}
+                  key: identityEndpoint
             - name: VNGCLOUD_VSERVER_ENDPOINT
               valueFrom:
                 secretKeyRef:
-                  name: {{ .name }}
-                  key: {{ .vserverEndpoint }}
-                  optional: true
-            {{- end }}
+                  name: {{ .Values.vngcloudAccessSecret.name }}
+                  key: vserverEndpoint
             {{- if .Values.proxy.http_proxy }}
             {{- include "vngcloud-blockstorage-csi-driver.http-proxy" . | nindent 12 }}
             {{- end }}
