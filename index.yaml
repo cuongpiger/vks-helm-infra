@@ -24,6 +24,16 @@ entries:
   datastore:
   - apiVersion: v2
     appVersion: 3.5.12
+    created: "2024-04-12T01:11:55.701338991Z"
+    description: A Helm chart for Kubernetes
+    digest: 39c4818556f94101ece4e003b453d5ddd462548403fb34b49202c953b90a54f8
+    name: datastore
+    type: application
+    urls:
+    - https://github.com/cuongpiger/vks-helm-infra/releases/download/datastore-0.1.2/datastore-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 3.5.12
     created: "2024-03-14T06:02:22.043148747Z"
     description: A Helm chart for Kubernetes
     digest: 6a6158562b56ba32df185aa1d83c4c401f71530d38dba69d1aa884fa9d3dd4c3
@@ -200,4 +210,4 @@ entries:
     urls:
     - https://github.com/cuongpiger/vks-helm-infra/releases/download/vngcloud-capi-controller-manager-0.0.2/vngcloud-capi-controller-manager-0.0.2.tgz
     version: 0.0.2
-generated: "2024-04-06T09:32:57.629997999Z"
+generated: "2024-04-12T01:11:55.701375619Z"
