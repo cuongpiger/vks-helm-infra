@@ -307,6 +307,14 @@ controller:
   #  otelServiceName: vngcloud-csi-controller
   #  otelExporterEndpoint: "http://localhost:4317"
 
+snapshotController:
+  image:
+    pullPolicy: IfNotPresent
+    repository: vcr.vngcloud.vn/81-vks-public/csi-snapshot-controller
+    tag: "v7.0.1"
+  logLevel: 2
+  replicas: 2
+
 node:
   env: []
   envFrom: []
