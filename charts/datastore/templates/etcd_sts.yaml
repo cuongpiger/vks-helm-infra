@@ -6,6 +6,9 @@ metadata:
   name: {{ include "etcd.stsName" . }}
   namespace: {{ .Release.Namespace }}
 spec:
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Delete
+    whenScaled: Retain
   serviceName: {{ include "etcd.serviceName" . }}
   selector:
     matchLabels:
