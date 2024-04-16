@@ -92,6 +92,27 @@ entries:
     urls:
     - https://github.com/cuongpiger/vks-helm-infra/releases/download/vcontainer-storage-interface-1.0.0/vcontainer-storage-interface-1.0.0.tgz
     version: 1.0.0
+  vngcloud-blockstorage-csi-driver:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-04-16T01:57:41.524378982Z"
+    description: A Helm chart for VngCloud BlockStorage CSI Driver
+    digest: 4bdf5d2e0316ad8ff5986398f1934dce03ae265f5ead62ed881f2e4fafa89903
+    home: https://github.com/vngcloud/vngcloud-blockstorage-csi-driver
+    keywords:
+    - vngcloud
+    - blockstorage
+    - csi
+    kubeVersion: '>=1.17.0-0'
+    maintainers:
+    - name: VngCloud
+      url: https://github.com/vngcloud/vngcloud-blockstorage-csi-driver
+    name: vngcloud-blockstorage-csi-driver
+    sources:
+    - https://github.com/vngcloud/vngcloud-blockstorage-csi-driver
+    urls:
+    - https://github.com/cuongpiger/vks-helm-infra/releases/download/vngcloud-blockstorage-csi-driver-0.0.1/vngcloud-blockstorage-csi-driver-0.0.1.tgz
+    version: 0.0.1
   vngcloud-capi-controller-manager:
   - apiVersion: v2
     appVersion: v1.0.1
@@ -210,4 +231,4 @@ entries:
     urls:
     - https://github.com/cuongpiger/vks-helm-infra/releases/download/vngcloud-capi-controller-manager-0.0.2/vngcloud-capi-controller-manager-0.0.2.tgz
     version: 0.0.2
-generated: "2024-04-12T01:11:55.701375619Z"
+generated: "2024-04-16T01:57:41.524437652Z"
