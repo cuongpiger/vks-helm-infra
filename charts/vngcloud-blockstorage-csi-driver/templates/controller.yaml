@@ -72,6 +72,8 @@ spec:
         - name: vngcloud-plugin
           image: {{ printf "%s%s:%s" (default "" .Values.image.containerRegistry) .Values.image.repository (default (printf "v%s" .Chart.AppVersion) (.Values.image.tag | toString)) }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - /bin/vngcloud-blockstorage-csi-driver
           args:
             {{- if ne .Release.Name "kustomize" }}
             - controller
@@ -91,9 +93,6 @@ spec:
             {{- with .Values.controller.httpEndpoint }}
             - --http-endpoint={{ . }}
             {{- end }}
-            {{- if .Values.controller.sdkDebugLog }}
-            - --aws-sdk-debug-log=true
-            {{- end}}
             {{- if .Values.controller.batching }}
             - --batching=true
             {{- end}}
@@ -105,6 +104,9 @@ spec:
             {{- end }}
             {{- if .Values.controller.otelTracing }}
             - --enable-otel-tracing=true
+            {{- end}}
+            {{- if .Values.vngcloudAccessSecret.vksClusterId }}
+            - --cluster-id=$(VNGCLOUD_VKS_CLUSTER_ID)
             {{- end}}
             - --v={{ .Values.controller.logLevel }}
             {{- range .Values.controller.additionalArgs }}
@@ -137,6 +139,13 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.vngcloudAccessSecret.name }}
                   key: vserverEndpoint
+            {{- if .Values.vngcloudAccessSecret.vksClusterId }}
+            - name: VNGCLOUD_VKS_CLUSTER_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.vngcloudAccessSecret.name }}
+                  key: vksClusterId
+            {{- end}}
             {{- if .Values.proxy.http_proxy }}
             {{- include "vngcloud-blockstorage-csi-driver.http-proxy" . | nindent 12 }}
             {{- end }}

@@ -62,6 +62,8 @@ spec:
         - name: vngcloud-plugin
           image: {{ printf "%s%s:%s" (default "" .Values.image.containerRegistry) .Values.image.repository (default (printf "v%s" .Chart.AppVersion) (toString .Values.image.tag)) }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - /bin/vngcloud-blockstorage-csi-driver
           args:
             - node
             - --endpoint=$(CSI_ENDPOINT)
@@ -83,11 +85,31 @@ spec:
             {{- end }}
           env:
             - name: CSI_ENDPOINT
-              value: unix:/csi/csi.sock
+              value: unix://csi/csi.sock
             - name: CSI_NODE_NAME
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+            - name: VNGCLOUD_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.vngcloudAccessSecret.name }}
+                  key: keyId
+            - name: VNGCLOUD_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.vngcloudAccessSecret.name }}
+                  key: accessKey
+            - name: VNGCLOUD_IDENTITY_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.vngcloudAccessSecret.name }}
+                  key: identityEndpoint
+            - name: VNGCLOUD_VSERVER_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.vngcloudAccessSecret.name }}
+                  key: vserverEndpoint
             {{- if .Values.proxy.http_proxy }}
             {{- include "vngcloud-blockstorage-csi-driver.http-proxy" . | nindent 12 }}
             {{- end }}

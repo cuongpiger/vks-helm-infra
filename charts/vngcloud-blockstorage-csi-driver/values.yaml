@@ -3,9 +3,9 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: vcr.vngcloud.vn/60108-cuongdm3/vngcloud-blockstorage-csi-driver
+  repository: vcr.vngcloud.vn/81-vks-public/vngcloud-blockstorage-csi-driver
   # Overrides the image tag whose default is v{{ .Chart.AppVersion }}
-  tag: "v0.0.0"
+  tag: ""
   pullPolicy: Always
 
 # -- Custom labels to add into metadata
@@ -18,11 +18,12 @@ sidecars:
     env: []
     image:
       pullPolicy: IfNotPresent
-      repository: vcr.vngcloud.vn/60108-cuongdm3/csi-provisioner
+      repository: vcr.vngcloud.vn/81-vks-public/csi-provisioner
       tag: "v4.0.1"
     logLevel: 5
     # Additional parameters provided by external-provisioner.
-    additionalArgs: []
+    additionalArgs:
+      - "--timeout=5m"
     # Grant additional permissions to external-provisioner
     additionalClusterRoleRules:
     resources: {}
@@ -43,7 +44,7 @@ sidecars:
     env: []
     image:
       pullPolicy: IfNotPresent
-      repository: vcr.vngcloud.vn/60108-cuongdm3/csi-attacher
+      repository: vcr.vngcloud.vn/81-vks-public/csi-attacher
       tag: "v4.5.1"
     # Tune leader lease election for csi-attacher.
     # Leader election is on by default.
@@ -70,7 +71,7 @@ sidecars:
     env: []
     image:
       pullPolicy: IfNotPresent
-      repository: vcr.vngcloud.vn/60108-cuongdm3/csi-snapshotter
+      repository: vcr.vngcloud.vn/81-vks-public/csi-snapshotter
       tag: "v7.0.2"
     logLevel: 5
     # Additional parameters provided by csi-snapshotter.
@@ -84,7 +85,7 @@ sidecars:
   livenessProbe:
     image:
       pullPolicy: IfNotPresent
-      repository: vcr.vngcloud.vn/60108-cuongdm3/csi-livenessprobe
+      repository: vcr.vngcloud.vn/81-vks-public/csi-livenessprobe
       tag: "v2.9.0"
     # Additional parameters provided by livenessprobe.
     additionalArgs: []
@@ -96,7 +97,7 @@ sidecars:
     env: []
     image:
       pullPolicy: IfNotPresent
-      repository: vcr.vngcloud.vn/60108-cuongdm3/csi-resizer
+      repository: vcr.vngcloud.vn/81-vks-public/csi-resizer
       tag: "v1.9.4"
     # Tune leader lease election for csi-resizer.
     # Leader election is on by default.
@@ -121,7 +122,7 @@ sidecars:
     env: []
     image:
       pullPolicy: IfNotPresent
-      repository: vcr.vngcloud.vn/60108-cuongdm3/csi-node-driver-registrar
+      repository: vcr.vngcloud.vn/81-vks-public/csi-node-driver-registrar
       tag: "v2.9.4"
     logLevel: 5
     # Additional parameters provided by node-driver-registrar.
@@ -142,9 +143,9 @@ sidecars:
   volumemodifier:
     env: []
     image:
-      pullPolicy: Always
-      repository: vcr.vngcloud.vn/60108-cuongdm3/vngcloud-csi-volume-modifier
-      tag: "v0.0.0"
+      pullPolicy: IfNotPresent
+      repository: vcr.vngcloud.vn/81-vks-public/vngcloud-csi-volume-modifier
+      tag: "v1.0.0"
     leaderElection:
       enabled: true
       # Optional values to tune lease behavior.
@@ -175,11 +176,12 @@ vngcloudAccessSecret:
   accessKey: access_key                                # PUT YOUR ClientSecret here
   identityEndpoint: "https://iamapis.vngcloud.vn/accounts-api"
   vserverEndpoint: "https://hcm-3.api.vngcloud.vn/vserver/vserver-gateway"
+  vksClusterId: "cluster_id"                              # PUT YOUR ClusterID here
 
 controller:
-  batching: true
+  batching: false
   volumeModificationFeature:
-    enabled: false
+    enabled: true
   # Additional parameters provided by aws-ebs-csi-driver controller.
   additionalArgs: []
   sdkDebugLog: false
@@ -307,20 +309,12 @@ controller:
   #  otelServiceName: vngcloud-csi-controller
   #  otelExporterEndpoint: "http://localhost:4317"
 
-snapshotController:
-  image:
-    pullPolicy: IfNotPresent
-    repository: vcr.vngcloud.vn/81-vks-public/csi-snapshot-controller
-    tag: "v7.0.1"
-  logLevel: 2
-  replicas: 2
-
 node:
   env: []
   envFrom: []
   kubeletPath: /var/lib/kubelet
   loggingFormat: text
-  logLevel: 2
+  logLevel: 5
   priorityClassName:
   additionalArgs: []
   affinity: {}
@@ -403,21 +397,21 @@ additionalDaemonSets:
 # Enable compatibility for the A1 instance family via use of an AL2-based image in a separate DaemonSet
 # a1CompatibilityDaemonSet: true
 
-storageClasses: []
-# Add StorageClass resources like:
-# - name: ebs-sc
-#   # annotation metadata
-#   annotations:
-#     storageclass.kubernetes.io/is-default-class: "true"
-#   # label metadata
-#   labels:
-#     my-label-is: supercool
-#   # defaults to WaitForFirstConsumer
-#   volumeBindingMode: WaitForFirstConsumer
-#   # defaults to Delete
-#   reclaimPolicy: Retain
-#   parameters:
-#     encrypted: "true"
+storageClasses:
+  # Add StorageClass resources like:
+  - name: sc-iops-200-retain
+    # annotation metadata
+    annotations:
+      storageclass.kubernetes.io/is-default-class: "true"
+    # label metadata
+    labels:
+      my-label-is: supercool
+    # defaults to WaitForFirstConsumer
+    volumeBindingMode: Immediate
+    # defaults to Delete
+    reclaimPolicy: Retain
+    parameters:
+      type: "vtype-bacd68a4-8758-4fb6-a739-b047665e05d5"
 
 volumeSnapshotClasses: []
 # Add VolumeSnapshotClass resources like:
