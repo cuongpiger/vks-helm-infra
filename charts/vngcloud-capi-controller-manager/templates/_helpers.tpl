@@ -72,6 +72,7 @@ default-monitor-http-success-code = {{ .Values.cloudConfig.vlb.defaultMonitorHtt
 default-monitor-http-version = {{ .Values.cloudConfig.vlb.defaultMonitorHttpVersion | quote }}
 default-monitor-http-domain-name = {{ .Values.cloudConfig.vlb.defaultMonitorHttpDomainName | quote }}
 default-monitor-protocol = {{ .Values.cloudConfig.vlb.defaultMonitorProtocol | quote }}
+default-node-label-selector = {{ .Values.cloudConfig.vlb.defaultNodeLabelSelector | quote }}
 
 {{- if .Chart.Version }}
 [Metadata]

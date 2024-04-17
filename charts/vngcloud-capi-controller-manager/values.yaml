@@ -130,6 +130,7 @@ cloudConfig:
     defaultMonitorHttpVersion: "1.0"
     defaultMonitorHttpDomainName: ""
     defaultMonitorProtocol: "tcp"
+    defaultNodeLabelSelector: "workload=true"
 
 
 ## Pod priority settings
