@@ -1,4 +1,4 @@
-# Default values for aws-ebs-csi-driver.
+# Default values for vngcloud-blockstorage-csi-driver.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -11,7 +11,7 @@ image:
 # -- Custom labels to add into metadata
 customLabels:
   {}
-  # k8s-app: aws-ebs-csi-driver
+  # k8s-app: vngcloud-blockstorage-csi-driver
 
 sidecars:
   provisioner:
@@ -20,7 +20,7 @@ sidecars:
       pullPolicy: IfNotPresent
       repository: vcr.vngcloud.vn/81-vks-public/csi-provisioner
       tag: "v4.0.1"
-    logLevel: 5
+    logLevel: 2
     # Additional parameters provided by external-provisioner.
     additionalArgs:
       - "--timeout=5m"
@@ -56,7 +56,7 @@ sidecars:
       # leaseDuration: "15s"
       # renewDeadline: "10s"
       # retryPeriod: "5s"
-    logLevel: 5
+    logLevel: 2
     # Additional parameters provided by external-attacher.
     additionalArgs: []
     # Grant additional permissions to external-attacher
@@ -73,7 +73,7 @@ sidecars:
       pullPolicy: IfNotPresent
       repository: vcr.vngcloud.vn/81-vks-public/csi-snapshotter
       tag: "v7.0.2"
-    logLevel: 5
+    logLevel: 2
     # Additional parameters provided by csi-snapshotter.
     additionalArgs: []
     # Grant additional permissions to csi-snapshotter
@@ -109,7 +109,7 @@ sidecars:
       # leaseDuration: "15s"
       # renewDeadline: "10s"
       # retryPeriod: "5s"
-    logLevel: 5
+    logLevel: 2
     # Additional parameters provided by external-resizer.
     additionalArgs: []
     # Grant additional permissions to external-resizer
@@ -154,7 +154,7 @@ sidecars:
       # leaseDuration: "15s"
       # renewDeadline: "10s"
       # retryPeriod: "5s"
-    logLevel: 5
+    logLevel: 2
     # Additional parameters provided by volume-modifier-for-k8s.
     additionalArgs: []
     resources: {}
@@ -182,7 +182,7 @@ controller:
   batching: false
   volumeModificationFeature:
     enabled: true
-  # Additional parameters provided by aws-ebs-csi-driver controller.
+  # Additional parameters provided by vngcloud-blockstorage-csi-driver controller.
   additionalArgs: []
   sdkDebugLog: false
   loggingFormat: text
@@ -213,22 +213,18 @@ controller:
     # Additional labels for ServiceMonitor object
     labels:
       release: prometheus
-  # If set to true, AWS API call metrics will be exported to the following
+  # If set to true, VngCloud API call metrics will be exported to the following
   # TCP endpoint: "0.0.0.0:3301"
   # ---
-  # ID of the Kubernetes cluster used for tagging provisioned EBS volumes (optional).
+  # ID of the Kubernetes cluster used for tagging provisioned VngCloud volumes (optional).
   k8sTagClusterId:
-  logLevel: 2
+  logLevel: 5
   userAgentExtra: "helm"
   nodeSelector: {}
   deploymentAnnotations: {}
   podAnnotations: {}
   podLabels: {}
   priorityClassName: system-cluster-critical
-  # AWS region to use. If not specified then the region will be looked up via the AWS EC2 metadata
-  # service.
-  # ---
-  # region: us-east-1
   region:
   replicaCount: 2
   revisionHistoryLimit: 10
@@ -253,8 +249,6 @@ controller:
     create: true
     name: vngcloud-csi-controller-sa
     annotations: {}
-    ## Enable if EKS IAM for SA is used
-    # eks.amazonaws.com/role-arn: arn:<partition>:iam::<account>:role/ebs-csi-role
     automountServiceAccountToken: true
   tolerations:
     - key: CriticalAddonsOnly
@@ -262,17 +256,6 @@ controller:
     - effect: NoExecute
       operator: Exists
       tolerationSeconds: 300
-  # TSCs without the label selector stanza
-  #
-  # Example:
-  #
-  # topologySpreadConstraints:
-  #  - maxSkew: 1
-  #    topologyKey: topology.kubernetes.io/zone
-  #    whenUnsatisfiable: ScheduleAnyway
-  #  - maxSkew: 1
-  #    topologyKey: kubernetes.io/hostname
-  #    whenUnsatisfiable: ScheduleAnyway
   topologySpreadConstraints: []
   # securityContext on the controller pod
   securityContext:
@@ -340,14 +323,9 @@ node:
     create: true
     name: vngcloud-csi-node-sa
     annotations: {}
-    ## Enable if EKS IAM for SA is used
-    # eks.amazonaws.com/role-arn: arn:<partition>:iam::<account>:role/ebs-csi-role
     automountServiceAccountToken: true
   # Enable the linux daemonset creation
   enableLinux: true
-  # The number of attachment slots to reserve for system use (and not to be used for CSI volumes)
-  # When this parameter is not specified (or set to -1), the EBS CSI Driver will attempt to determine the number of reserved slots via heuristic
-  # Cannot be specified at the same time as `node.volumeAttachLimit`
   reservedVolumeAttachments:
   # The "maximum number of attachable volumes" per node
   # Cannot be specified at the same time as `node.reservedVolumeAttachments`
@@ -412,6 +390,7 @@ storageClasses:
     reclaimPolicy: Retain
     parameters:
       type: "vtype-bacd68a4-8758-4fb6-a739-b047665e05d5"
+    allowVolumeExpansion: true
 
 volumeSnapshotClasses: []
 # Add VolumeSnapshotClass resources like:
