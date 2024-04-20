@@ -112,10 +112,11 @@ cloudConfig:
     vserverURL: "https://hcm-3.api.vngcloud.vn/vserver"
     clientID: "<PUT_YOUR_CLIENT_ID>"
     clientSecret: "<PUT_YOUR_CLIENT_SECRET>"
+    alertChannel: "<PUT_YOUR_ALERT_CHANNEL>"  # Optional, for example: telegram://<TOKEN>@<CHAT_ID>
 
   vlb:
     defaultL4PackageID: "lbp-96b6b072-aadb-4b58-9d5f-c16ad69d36aa"
-    defaultListenerAllowedCIRDs: "0.0.0.0/0"
+    defaultListenerAllowedCIRDs: '{"cidrs": [{"ip-address":"0.0.0.0","subnet-mask":"0"}]}'
     defaultIdleTimeoutClient: 50
     defaultIdleTimeoutMember: 50
     defaultIdleTimeoutConnection: 5
