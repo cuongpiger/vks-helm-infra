@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "vngcloud-capi-metrics-controller.fullname" . }}
+  labels:
+    {{- include "vngcloud-capi-metrics-controller.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: metrics
+      protocol: TCP
+      name: metrics
+    - port: {{ .Values.service.telemetryPort }}
+      targetPort: telemetry
+      protocol: TCP
+      name: telemetry
+  selector:
+    {{- include "vngcloud-capi-metrics-controller.selectorLabels" . | nindent 4 }}
