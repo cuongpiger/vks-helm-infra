@@ -77,10 +77,11 @@ enabledControllers: []
   # - route
   # - service
 
-# Any extra arguments for openstack-cloud-controller-manager
-controllerExtraArgs: {}
+# Any extra arguments for vngcloud-capi-controller-manager
+controllerExtraArgs:
+  - --concurrent-service-syncs=5
+
 # controllerExtraArgs: |-
-#   - --cluster-name=my-cluster
 
 # Create a service monitor for Prometheus Operator
 serviceMonitor: {}
