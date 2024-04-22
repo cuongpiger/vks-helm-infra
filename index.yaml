@@ -306,6 +306,16 @@ entries:
   vngcloud-capi-metrics-controller:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2024-04-22T03:19:35.974649132Z"
+    description: A Helm chart for installing vngcloud-capi-metrics-controller on Kubernetes
+    digest: 280dafbe7e24509fb6b94fb6f852587dd189c1d1e361566c7ad3735cc1800823
+    name: vngcloud-capi-metrics-controller
+    type: application
+    urls:
+    - https://github.com/cuongpiger/vks-helm-infra/releases/download/vngcloud-capi-metrics-controller-1.0.1/vngcloud-capi-metrics-controller-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-04-20T08:32:03.557570227Z"
     description: A Helm chart for installing vngcloud-capi-metrics-controller on Kubernetes
     digest: 6b0d314977e15b89c9e8f1287ebb961cf6997e5790f7707a7de696ddc84d5cdc
@@ -314,4 +324,4 @@ entries:
     urls:
     - https://github.com/cuongpiger/vks-helm-infra/releases/download/vngcloud-capi-metrics-controller-1.0.0/vngcloud-capi-metrics-controller-1.0.0.tgz
     version: 1.0.0
-generated: "2024-04-22T00:54:31.926089198Z"
+generated: "2024-04-22T03:19:35.974696942Z"
