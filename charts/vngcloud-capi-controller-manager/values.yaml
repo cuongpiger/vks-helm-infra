@@ -78,10 +78,11 @@ enabledControllers: []
   # - service
 
 # Any extra arguments for vngcloud-capi-controller-manager
-controllerExtraArgs:
-  - --concurrent-service-syncs=5
+# controllerExtraArgs:
+#   - --concurrent-service-syncs=5
 
-# controllerExtraArgs: |-
+controllerExtraArgs: |-
+  - --concurrent-service-syncs=5
 
 # Create a service monitor for Prometheus Operator
 serviceMonitor: {}
