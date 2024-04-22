@@ -51,8 +51,8 @@ config:
   oneOutput: false
   # Port to expose metrics on. (default 8080)
   port: 8080
-  # Comma-separated list of Resources to be enabled. Defaults to "clusters,kubeadmcontrolplanes,machinedeployments,machines,machinesets"
-  resources: "clusters,kubeadmcontrolplanes,machinedeployments,machines,machinesets"
+  # Comma-separated list of Resources to be enabled. Defaults to "clusters,machinedeployments,machines,machinesets"
+  resources: "clusters,machinedeployments,machines,machinesets"
   # If true, avoid header prefixes in the log messages
   skipHeaders: false
   # If true, avoid headers when opening log files
