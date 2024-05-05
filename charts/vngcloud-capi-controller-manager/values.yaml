@@ -119,6 +119,7 @@ cloudConfig:
 
   vlb:
     defaultL4PackageID: "lbp-96b6b072-aadb-4b58-9d5f-c16ad69d36aa"
+    defaultSubnetID: "sub-403b36d2-39fc-47c4-b40b-8df0ecb71045"
     defaultListenerAllowedCIRDs: '{"cidrs": [{"ip-address":"0.0.0.0","subnet-mask":"0"}]}'
     defaultIdleTimeoutClient: 50
     defaultIdleTimeoutMember: 50
@@ -135,6 +136,14 @@ cloudConfig:
     defaultMonitorHttpDomainName: ""
     defaultMonitorProtocol: "tcp"
     defaultNodeLabelSelector: "workload=true"
+
+  loadBalancerPool:
+    enable: false
+    workerAmount: 3
+    loopInterval: 30
+    poolSize: 5
+    poolBuffer: 100
+    servicePorts: '{"service-ports": [{"name":"api-server-tcp-6443","port":6443,"protocol":"tcp"},{"name":"konnectivity-tcp-8132","port":8132,"protocol":"tcp"}]}'
 
 
 ## Pod priority settings

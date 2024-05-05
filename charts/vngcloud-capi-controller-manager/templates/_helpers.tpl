@@ -59,6 +59,7 @@ alert-channel-size = {{ .Values.cloudConfig.global.alertChannelSize | quote }}
 
 [VLB]
 default-l4-package-id = {{ .Values.cloudConfig.vlb.defaultL4PackageID | quote }}
+default-subnet-id = {{ .Values.cloudConfig.vlb.defaultSubnetID | quote }}
 default-listener-allowed-cidrs = {{ .Values.cloudConfig.vlb.defaultListenerAllowedCIRDs| quote }}
 default-idle-timeout-client = {{ .Values.cloudConfig.vlb.defaultIdleTimeoutClient | quote }}
 default-idle-timeout-member = {{ .Values.cloudConfig.vlb.defaultIdleTimeoutMember | quote }}
@@ -75,6 +76,15 @@ default-monitor-http-version = {{ .Values.cloudConfig.vlb.defaultMonitorHttpVers
 default-monitor-http-domain-name = {{ .Values.cloudConfig.vlb.defaultMonitorHttpDomainName | quote }}
 default-monitor-protocol = {{ .Values.cloudConfig.vlb.defaultMonitorProtocol | quote }}
 default-node-label-selector = {{ .Values.cloudConfig.vlb.defaultNodeLabelSelector | quote }}
+sys-zone-name = {{ .Values.cluster.clusterID | quote }}
+
+[LoadBalancerPool]
+enable = {{ .Values.cloudConfig.loadBalancerPool.enable | quote }}
+worker-amount = {{ .Values.cloudConfig.loadBalancerPool.workerAmount | quote }}
+loop-interval = {{ .Values.cloudConfig.loadBalancerPool.loopInterval | quote }}
+pool-size = {{ .Values.cloudConfig.loadBalancerPool.poolSize | quote }}
+pool-buffer = {{ .Values.cloudConfig.loadBalancerPool.poolBuffer | quote }}
+service-ports = {{ .Values.cloudConfig.loadBalancerPool.servicePorts | quote }}
 
 {{- if .Chart.Version }}
 [Metadata]
