@@ -56,6 +56,7 @@ client-id = {{ .Values.cloudConfig.global.clientID | quote}}
 client-secret = {{ .Values.cloudConfig.global.clientSecret | quote }}
 alert-channel = {{ .Values.cloudConfig.global.alertChannel | quote }}
 alert-channel-size = {{ .Values.cloudConfig.global.alertChannelSize | quote }}
+cache-uri = {{ .Values.cloudConfig.global.cacheURI | quote }}
 
 [VLB]
 default-l4-package-id = {{ .Values.cloudConfig.vlb.defaultL4PackageID | quote }}
