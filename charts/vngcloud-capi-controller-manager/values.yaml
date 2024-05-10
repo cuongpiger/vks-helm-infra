@@ -140,11 +140,11 @@ cloudConfig:
 
   loadBalancerPool:
     enable: false
-    workerAmount: 3
+    workerAmount: 2
     loopInterval: 30
     poolBuffer: 100
     delBuffer: 20
-    servicePorts: '{"service-ports": [{"pool-name":"workload-clusters","pool-size":5,"items":[{"name":"api-server-tcp-6443","port":6443,"protocol":"tcp"},{"name":"konnectivity-tcp-8132","port":8132,"protocol":"tcp"}]}]}'
+    servicePorts: '{"service-ports": [{"pool-name":"workload-clusters","pool-size":3,"items":[{"name":"api-server-tcp-6443","port":6443,"protocol":"tcp"},{"name":"konnectivity-tcp-8132","port":8132,"protocol":"tcp"}]}]}'
 
 
 ## Pod priority settings
