@@ -111,6 +111,7 @@ spec:
       {{- end }}
       {{- if .Values.hostNetwork }}
       hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       {{- end }}
       {{- if .Values.priorityClassName }}
       priorityClassName: {{ .Values.priorityClassName }}
