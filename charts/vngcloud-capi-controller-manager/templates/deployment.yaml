@@ -109,7 +109,9 @@ spec:
       {{- if .Values.extraInitContainers }}
       initContainers: {{ toYaml .Values.extraInitContainers | nindent 6 }}
       {{- end }}
+      {{- if .Values.hostNetwork }}
       hostNetwork: true
+      {{- end }}
       {{- if .Values.priorityClassName }}
       priorityClassName: {{ .Values.priorityClassName }}
       {{- end }}

@@ -186,3 +186,5 @@ cluster:
 clusterRoleName: system:cloud-controller-manager
 
 serviceAccountName: cloud-controller-manager
+
+hostNetwork: false
