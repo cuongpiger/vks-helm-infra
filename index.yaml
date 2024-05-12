@@ -136,6 +136,19 @@ entries:
   vngcloud-capi-controller-manager:
   - apiVersion: v2
     appVersion: v1.1.0
+    created: "2024-05-12T11:44:01.544817728Z"
+    description: VngCloud Controller Manager plugin for Kubernetes
+    digest: fe16965aed144ea26742b33bd00934be0d74faac5ab9748ebb7e24fc01f6477a
+    maintainers:
+    - email: cuongdm3@vng.com.vn
+      name: Cuong. Duong Manh
+    name: vngcloud-capi-controller-manager
+    type: application
+    urls:
+    - https://github.com/cuongpiger/vks-helm-infra/releases/download/vngcloud-capi-controller-manager-1.1.6/vngcloud-capi-controller-manager-1.1.6.tgz
+    version: 1.1.6
+  - apiVersion: v2
+    appVersion: v1.1.0
     created: "2024-05-10T06:35:59.73647749Z"
     description: VngCloud Controller Manager plugin for Kubernetes
     digest: 25354c5f2edce3af6ffa2f94b406fdaae5a1ec77e986093612fc3a88da91082e
@@ -402,4 +415,4 @@ entries:
     urls:
     - https://github.com/cuongpiger/vks-helm-infra/releases/download/vngcloud-capi-metrics-controller-1.0.0/vngcloud-capi-metrics-controller-1.0.0.tgz
     version: 1.0.0
-generated: "2024-05-10T06:35:59.736628822Z"
+generated: "2024-05-12T11:44:01.544939164Z"
