@@ -84,7 +84,6 @@ enable = {{ .Values.cloudConfig.loadBalancerPool.enable | quote }}
 worker-amount = {{ .Values.cloudConfig.loadBalancerPool.workerAmount | quote }}
 loop-interval = {{ .Values.cloudConfig.loadBalancerPool.loopInterval | quote }}
 pool-buffer = {{ .Values.cloudConfig.loadBalancerPool.poolBuffer | quote }}
-del-buffer = {{ .Values.cloudConfig.loadBalancerPool.delBuffer | quote }}
 service-ports = {{ .Values.cloudConfig.loadBalancerPool.servicePorts | quote }}
 
 {{- if .Chart.Version }}
